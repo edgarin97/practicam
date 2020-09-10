@@ -5,9 +5,8 @@ function LED1_On() {
 		message = new Paho.MQTT.Message("LED1_ON");
 		message.destinationName = "edgaraguagalloeym@hotmail.com/test1";
 		client.send(message);
-		//document.getElementById("estado").innerHTML="led encendido";
-		document.getElementById("estado").innerHTML=document.getElementById("fname").value
-  
+		document.getElementById("estado").innerHTML="led encendido";
+		  
 }
 function LED1_Off(){	
 	console.log("led off");
@@ -16,10 +15,6 @@ function LED1_Off(){
 		client.send(message);
 		document.getElementById("estado").innerHTML="led apagado";
 }
-
-
-
-
 
 
 // Create a client instance
@@ -67,6 +62,15 @@ function LED1_Off(){
 
   // called when a message arrives
   function onMessageArrived(message) {
+  var separador=",";
+  var SValue="0";
     console.log("onMessageArrived:"+message.payloadString);
+    SValue=message.payloadString.split(separador);
+    document.getElementById("sensor").innerHTML=SValue[0];
+    if(SValue[1]=="1"){
+		document.getElementById("estado");
+    else if(SValue[1]=="0"){
+		document.getElementById("estado");
+    }
+	}
   }
-  
